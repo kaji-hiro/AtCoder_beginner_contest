@@ -1,22 +1,15 @@
 n = gets.to_i
-s = []
-n.times do |i|
-  s[i] = gets
-end
-ans = 0
-
-s.uniq.each do |i|
-  if i[0] == '!'
-    if s.include?(i.delete_prefix('!'))
-      puts i.delete_prefix('!')
-      return
-    end
+s_true = []
+s_false = []
+n.times do
+  tmp = gets
+  if tmp[0] == '!'
+    s_true << tmp.delete_prefix('!')
   else
-    if s.include?('!' + i)
-      puts i
-      return
-    end
+    s_false << tmp
   end
 end
-
-puts 'satisfiable'
+s = s_true & s_false
+if s.size.zero?
+  puts 'satisfiable'
+else
